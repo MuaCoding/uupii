@@ -1,0 +1,235 @@
+@charset "UTF-8";
+
+@import "../mixin/_variable.scss";
+@import "../mixin/_utilities.scss";
+
+// global
+.pane,
+.view,
+.modal {
+    background-color: $theme-base;
+}
+
+.scroll-refresher .ionic-refresher-content {
+    color: $text-base;
+}
+
+// slide banner
+.slider {
+    @extend %init-full-page;
+    >.slider-slides {
+        @extend %init-full-page;
+
+        >.slider-slide {
+            @extend %init-full-page;
+            >a {
+                @extend %init-full-page;
+            }
+        }
+    }
+
+    &.vw65 {
+        width: 100vw;
+        height: 65vw;
+    }
+    &.vw100 {
+        width: 100vw;
+        height: 100vw;
+    }
+
+    >.slider-pager {
+        bottom: 10px;
+        .slider-pager-page {
+            width: 10px;
+            height: 10px;
+            margin: 0 4px;
+            background-color: rgba(0,0,0,.8);
+            border-radius: 6px;
+
+            >i {
+                display: none;
+            }
+
+            &.active {
+                width: 18px;
+                background-color: $theme-primary;
+            }
+        }
+    }
+}
+
+// full screen scorll
+@keyframes bounce-down {
+    25% {
+        -webkit-transform: translateY(-5px);
+        transform: translateY(-5px);
+    }
+
+    50% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    75% {
+        -webkit-transform: translateY(-5px);
+        transform: translateY(-5px);
+    }
+}
+
+.full-scroll {
+    margin-bottom: -1px;
+    .slides {
+        height: calc(100vh - 44px);
+        &.has-tabs {
+            height: calc(100vh - 44px - 50px)
+        }
+
+        >div {
+            @extend %init-full-page;
+            >.bottom {
+                @include block-center("h");
+                bottom: 5px;
+
+                >.next {
+                    font-size: 14px;
+                    line-height: 1;
+                    color: #ffffff;
+                    text-align: center;
+                    -webkit-animation: bounce-down 5s infinite;
+                    animation: bounce-down 5s infinite;
+                }
+
+                >button {
+                    @extend %button;
+                    margin-bottom: 15px;
+                    padding: 5px 20px;
+                    border: 1px solid #dddddd;
+                    border-radius: 2px;
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+// product params check 
+.click-block {
+    display: none;
+}
+
+.popover-backdrop.active {
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.popover-backdrop {
+    @include flex();
+    align-items: flex-end;
+
+    &.hide {
+        display: none;
+    }
+}
+
+.popover.params-wrap {
+    position: relative;
+    overflow: hidden;
+    top: unset;
+    left: unset;
+    width: 100vw;
+    height: 60vh;
+    margin: 0;
+    border-radius: 0;
+    opacity: 1;
+
+    >.popover-arrow {
+        display: none;
+    }
+
+    .bar-header {
+        border-bottom: 1px solid $divider;
+
+        >.title {
+            // color: $text-base;
+            text-align: left;
+        }
+    }
+
+    .scroll-content {
+        margin: 0;
+    }
+
+    nav {
+        position: absolute;
+        top: 13px;
+        right: 13px;
+        z-index: 10;
+
+        a {
+            color: $text-muted;
+        }
+    }
+
+    form {
+        b {
+            // color: invert($text);
+        }
+
+        .radio {
+            >label {
+                >span {
+                    border: 1px solid transparent;
+                    // background-color: invert($bg-muted);
+                    color: invert($text-muted);
+                }
+
+                >input {
+                    &:checked + span {
+                        border-color: $interval;
+                        background-color: $body-bg;
+                        // color: $text-base;
+                    }
+                }
+            }
+        }
+
+        .rzslider {
+            >.rz-bar-wrapper {
+                >.rz-bar {
+                    // background-color: invert($bg-info-dark);
+
+                    &.rz-selection {
+                        background-color: invert($body-bg);
+                    }
+                }
+            }
+
+            >.rz-bubble {
+                color: invert($text-primary);
+
+                &.rz-limit {
+                    color: invert($text-info);
+                }
+            }
+
+            >.rz-pointer {
+                border: 1px solid $divider;
+                background-color: $body-bg;
+            }
+        }
+
+        .element {
+            >p {
+                color: $text-muted;
+                text-align: right;
+            }
+
+            >i {
+                color: $text-info;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+
+
+
+
+/**
+ * @desc 列表样式
+ * @author 
+ * @date 2017-08-27
+ */
+
+@import "../mixin/_variable.scss";
+@import "../mixin/_utilities.scss";
+
+.has-tabs {
+    bottom: 50px;
+}
+
+// footer nav
+tabs.footer-tabs {
+    @include flex();
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    border-top: 1px solid $border;
+    background-color: $body-bg;
+    >tab {
+        @include flex-full();
+        display: block;
+        position: relative;
+        padding: 7px 0 4px;
+        color: $text-light;
+        text-align: center;
+
+        &.active {
+            color: $text-primary;
+        }
+        >i {
+            display: block;
+            font-size: 18px;
+        }
+        >b {
+            display: block;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 20px;
+        }
+    }
+}
+
+// bottom button group
+.bar-footer.bar-button {
+    @include flex();
+    padding: 0;
+    background: none;
+
+    button {
+        @extend %button-full;
+        @include flex-full();
+
+        &+button {
+            border-left: 1px solid $border;
+        }
+    }
+}
+
+// bottom button 
+.bar-button {
+    display: -webkit-flex;
+    display: flex;
+    padding: 0 15px;
+    >button {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        font-size: 13px;
+    }
+    >.text-left {
+        text-align: left;
+    }
+
+    >.text-right {
+        text-align: right;
+    }
+}
+
+.footer {
+    background-color: $theme-base;
+    text-align: center;
+    .title {
+        height: 26px;
+        line-height: 26px;
+        >.link {
+            display: inline-block;
+            font-size: 13px;
+            height: 26px;
+            &+.link {
+                padding-left: 20px;
+                margin-left: 20px;
+                color: $text-base;
+                border-left: 1px solid $border;
+            }
+        }
+    }
+}

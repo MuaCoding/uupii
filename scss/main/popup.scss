@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/**
+ * @desc 列表样式
+ * @author 
+ * @date 2017-08-27
+ */
+
+@import "../mixin/_variable.scss";
+@import "../mixin/_utilities.scss";
+
+/*ionic prompt message */
+
+.popup-container {
+    >.popup {
+        color: #000000;
+        border-radius: 2px;
+
+        >.popup-head {
+            >.popup-title {
+                color: #000000;
+            }
+
+            >.popup-sub-title {
+                color: #444444;
+            }
+        }
+        >.popup-body {
+            text-align: center;
+        }
+
+        >.popup-buttons {
+            border-top: 1px solid #eeeeee;
+
+            >.button-positive {
+                background-color: $theme-primary;
+                &.activated {
+                    background-color: $theme-primary-dark;
+                }
+            }
+        }
+    }
+}
+
+
+/*single input*/
+
+.popup-container.singleInput {
+    >.popup {
+        >.popup-body {
+            >input {
+                padding: 10px;
+                height: 44px;
+            }
+        }
+    }
+}
+
+// prompt 
+.loading-container {
+    >.loading {
+        margin: 0 15px;
+    }
+}

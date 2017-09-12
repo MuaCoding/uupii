@@ -1,0 +1,43 @@
+<ion-view title="uupii">
+    <ion-nav-bar class="bar-back">
+        <ion-nav-buttons side="left">
+            <button class="button back" ng-click="$ionicGoBack()">
+                <i class="icon-back"></i>
+            </button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+	        <button class="button">
+	            <i class="icon-star-empty"></i>
+	            <span class="point" ng-if="hasUnread"></span>
+	        </button>
+	    </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-title>
+        <em ng-bind="carousel[0].name">详情</em>
+    </ion-nav-title>
+    
+    <ion-content has-bouncing="false">
+        <!--幻灯片轮播-->
+        <ion-slide-box class="vw65" on-slide-changed="slideHasChanged($index)" delegate-handle="carousel" does-continue="true" auto-play="true" slide-interval="4000" show-pager="{{carousel.length>=1}}">
+            <ion-slide ng-if="!carousel.length>0">
+                <a>
+                    <img src="images/default.png" err-src="images/default.png" />
+                </a>
+            </ion-slide>
+            <ion-slide ng-repeat="item in carousel[0].photo track by $index">
+                <a>
+                    <img view-src="{{item}}" src="images/default.png" err-src="images/default.png" alt="{{item.title}}"/>
+                </a>
+            </ion-slide>
+        </ion-slide-box>
+        <section>
+            <header class="header clearfix">
+                <h2 class="pull-left"><em ng-bind="carousel[0].name">产品</em></h2>
+            </header>
+        </section>
+    </ion-content>
+    <ion-footer-bar class="bar-button">
+        <button type="button">加入进货单</button>
+        <button type="button">立即购买</button>
+    </ion-footer-bar>
+</ion-view>

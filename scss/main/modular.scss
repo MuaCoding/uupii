@@ -1,0 +1,323 @@
+@charset "UTF-8";
+
+/**
+ * @desc 独立块样式
+ * @author 
+ * @date 
+**/
+
+@import "../mixin/_variable.scss";
+@import "../mixin/_utilities.scss";
+
+
+section {
+    position: relative;
+    overflow: hidden;
+    background-color: $body-bg;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, .1);
+}
+
+section+section {
+    margin-top: 10px;
+}
+
+
+// section common style
+section>.header {
+    display: block;
+    padding: 10px;
+    >h2 {
+        font-size: 15px;
+        line-height: 24px;
+        color: $text-darker;
+
+        >.icon {
+            color: $theme-primary;
+            margin-right: 5px;
+        }
+    }
+}
+
+section>.waitting {
+    display: block;
+    padding: 15px;
+    height: 100%;
+    line-height: 20px;
+    text-align: center;
+}
+
+
+// new new carousel style
+section>.carousel {
+    width: 100%;
+    padding: 0px 10px 15px;
+    height: 115px;
+    overflow: hidden;
+    .list {
+        display: -webkit-inline-box;
+        display: -moz-inline-box;
+        display: -ms-inline-flexbox;
+        display: -webkit-inline-flex;
+        display: inline-flex;
+        >.carousel-item {
+            position: relative;
+            float: left;
+            width: 280px;
+            margin-right: 10px;
+            -webkit-transition: padding-left .15s;
+            transition: padding-left .15s;
+            >a {
+                padding: .875rem;
+                &.activated {
+                    background-color: $body-bg;
+                }
+                >.carousel-cover {
+                    display: block;
+                    float: left;
+                    overflow: hidden;
+                    height: 70px;
+                    width: 70px;
+                    margin-right: 10px;
+                    font-size: 0;
+                }
+
+                >.carousel-cell {
+                    overflow: hidden;
+                    min-height: 70px;
+
+                    >h3 {
+                        margin-bottom: 5px;
+                        height: 46px;
+                        line-height: 20px;
+                        @include linesClamp();
+                    }
+
+                    >span {
+                        padding: 2px 4px;
+                        background-color: $theme-primary;
+                        color: $text-white;
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// hot style
+section .hot {
+    display: block;
+    overflow: hidden;
+    padding: 0 5px 5px;
+
+    .list {
+        >.hot-item {
+            display: block;
+            overflow: hidden;
+            width: 48%;
+            float: left;
+            padding: 8px;
+            margin: 1%;
+            border: 1px solid $border;
+            >a {
+                padding: 0;
+                &.activated {
+                    background-color: $body-bg;
+                }
+
+                >.hot-cover {
+                    display: block;
+                    overflow: hidden;
+                    font-size: 0;
+                    max-height: 130px;
+                }
+                >.hot-cell {
+                    display: block;
+                    margin-top: 10px;
+                    >h3 {
+                        font-size: 15px;
+                    }
+
+                    >p{
+                        line-height: 20px;
+                        span {
+                            font-size: 12px;
+                            color: $theme-primary;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+section .user-header {
+    position: relative;
+    display: block;
+    padding: 15px;
+    overflow: hidden;
+    border-bottom: 1px solid $border;
+    >.user-avatar {
+        float: left;
+        height: 65px;
+        width: 65px;
+        margin-right: 10px;
+        overflow: hidden;
+        border-radius: 100%;
+    }
+
+    >.user-cell {
+        overflow: hidden;
+        height: 65px;
+
+        >h2 {
+            height: 28px;
+            line-height: 28px;
+            font-size: 15px;
+            color: $text-darker;
+            @include lineClamp();
+        }
+        p {
+            margin-top: 15px;
+            font-size: 12px;
+            span {
+                >.icon {
+                    margin-right: 3px;
+                    &.icon-check {
+                        color: $theme-success;
+                    }
+                }
+            }
+            span+span {
+                margin-left: 5px;
+            }
+        }
+    }
+
+    >.icon-place {
+        position: absolute;
+        top: 40px;
+        right: 10px;
+    }
+}
+
+section .nav {
+    position: relative;
+    display: block;
+    padding: 15px 0;
+    .nav-wrap {
+        float: left;
+        width: 20%;
+        text-align: center;
+
+        >span {
+            position: relative;
+            line-height: 28px;
+
+            >.icon {
+                font-size: 21px;
+            }
+            >.circle {
+                position: absolute;
+                min-width: 16px;
+                min-height: 16px;
+                max-width: 20px;
+                max-height: 20px;
+                top: -8px;
+                right: -7px;
+                border-radius: 50%;
+                text-align: center;
+                background-color: #fff;
+                border: 1px solid $theme-primary;
+                font-size: 12px;
+                color: $theme-primary;
+                line-height: 13px;
+            }
+        }
+        >p {
+            height: 22px;
+            line-height: 20px;
+            font-size: 13px;
+        }
+    }
+
+    .nav-wrap+.nav-wrap {
+        border-left: 1px solid $border;
+    }
+}
+
+section .list-group {
+    display: block;
+    >a {
+        &.activated {
+            background-color: $body-bg;
+            border-color: #ddd;
+        }
+        padding-left: 50px;
+        font-size: 15px;
+        >.icon {
+            font-size: 27px;
+
+            &.icon-location {
+                color: #ed7844;
+            }
+            &.icon-msg {
+                color: $theme-success;
+            }
+            &.icon-box {
+                color: #dfc377;
+            }
+            &.icon-star {
+                color: #f7e441;
+            }
+            &.icon-review {
+                color: #77addf;
+            }
+            &.icon-jxc {
+                color: #888888;
+            }
+        }
+
+        >.badge {
+            right: 15px;
+            border-radius: 50%;
+        }
+    }
+}
+
+
+
+// form style -- login --- signin -- forgot -- 
+section .input-group {
+    position: relative;
+    display: block;
+    padding: 15px;
+    border-bottom: 1px solid $border;
+    &.addon {
+        padding-left: 25%;
+    }
+    >.input-mark {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 14px;
+        height: 38px;
+        line-height: 38px;
+    }
+
+    >input {
+        color: $text-base;
+    }
+
+    >.smscode {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        width: 100px;
+        height: 34px;
+        background-size: contain !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+    }
+}

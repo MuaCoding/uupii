@@ -1,0 +1,46 @@
+<ion-view title="用户登录">
+    <ion-nav-bar>
+        <ion-nav-title>
+            <em>用户登录</em>
+        </ion-nav-title>
+    </ion-nav-bar>
+    <ion-content has-bouncing="false">
+        <section>
+            <form name="loginForm" ng-submit="ajaxForm()">
+                <div class="input-group addon">
+                    <span class="input-mark">用户名</span>
+                    <input type="text" class="full-width" ng-model="input.account" placeholder="电子邮箱或手机号码" required />
+                </div>
+                <div class="input-group addon">
+                    <span class="input-mark">密码</span>
+                    <input type="password" name="pwd" class="full-width" ng-model="input.pwd" placeholder="请输入密码" required ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/" />
+                </div>
+                <div class="input-group addon">
+                    <span class="input-mark">验证码</span>
+                    <input type="text" name="smscode" class="full-width" ng-model="input.codeValue" placeholder="请输入验证码" required />
+                    <i class="smscode" style="background:url('data:image/png;base64,{{smscode.res_img}}')" ng-click="query_code()"></i>
+                </div>
+                <div class="wrap no-padding-bottom">
+                    <button type="submit" class="button button-block button-assertive" ng-disabled="loginForm.$invalid||flag" ng-bind="prompt(loginForm)">登录</button>
+                </div>
+                <div class="marker">
+                    <h2>or</h2>
+                </div>
+                <div class="wrap no-padding-top">
+                    <button type="button" class="button button-block button-balanced" ng-click="wx_login()"><i class="icon-wechat"></i> 微信登录</button>
+                </div>
+            </form>
+        </section>
+    </ion-content>
+    <div class="bar bar-footer footer">
+        <div class="title">
+            <a class="link">
+                忘记密码
+            </a>
+            <a class="link">
+                用户注册
+            </a>
+        </div>
+        
+    </div>
+</ion-view>

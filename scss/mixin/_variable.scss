@@ -1,0 +1,49 @@
+﻿@charset "UTF-8";
+
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+$gray-base:             #494949;
+$gray-darker:           #252525;  //lighten()变亮 darken()变暗
+$gray-dark:             #555555;   
+$gray:                  #999999;
+$gray-light:            #aaaaaa; 
+$gray-lighter:          #cccccc; 
+
+//== Colors
+//
+//## theme color.
+
+$theme-primary:         #f34242;
+$theme-primary-dark:    #e03c3c;
+$theme-success:         #1fad40;
+$theme-info:          	#208fd5;
+$theme-warnning:        #FFC107;
+$theme-disabled:        #f8f8f8;
+$theme-muted:        	#111111;
+$theme-base:        	#f6f7f9;
+//
+//## Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+$body-bg:               #ffffff;
+//** Global text color on `<body>`.
+$text-success: 			$theme-success;
+$text-muted: 			$theme-muted;
+$text-info: 			$theme-info;
+$text-primary: 			$theme-primary;
+$text-base: 			$gray-base;
+$text-light: 			$gray;
+$text-lighter: 			$gray-lighter;
+$text-white:            $body-bg;
+$text-dark: 			$gray-dark;
+$text-darker: 			$gray-darker;
+/*线框颜色*/
+$border: #e5e5e5; //#222222;//
+$divider: #eeeeee;
+$interval: #f2f2f2;//#888888;
+
+
+

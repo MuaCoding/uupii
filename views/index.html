@@ -1,0 +1,70 @@
+<ion-view has-tabs="index">
+    <ion-nav-bar class="bar-back">
+        <ion-nav-buttons side="left">
+            <button class="button back" ng-click="$ionicGoBack()">
+                <i class="icon-list"></i><span class="pull-left" ng-bind="province.prov">加载中..</span>
+            </button>
+        </ion-nav-buttons>
+        <ion-nav-title class="search-wrap">
+            <i class="icon icon-search"></i>
+            <span>找什么呢？搜索试试吧~</span>
+        </ion-nav-title>
+    </ion-nav-bar>
+    <ion-content has-bouncing="false">
+        <ion-refresher pulling-text="下拉刷新" on-refresh="refresh()">
+        </ion-refresher>
+        <!--幻灯片轮播-->
+        <ion-slide-box class="vw65" on-slide-changed="slideHasChanged($index)" delegate-handle="slider" does-continue="true" auto-play="true" slide-interval="true" show-pager="{{banners.length>=1}}">
+            <ion-slide ng-if="!banners.length>0">
+                <a>
+                    <img src="images/default.png" err-src="images/default.png" />
+                </a>
+            </ion-slide>
+            <ion-slide ng-repeat="item in banners track by $index">
+                <a>
+                    <img view-src="{{item.pic}}" src="images/default.png" err-src="images/default.png" alt="{{item.title}}"/>
+                </a>
+            </ion-slide>
+        </ion-slide-box>
+        <!-- 新品上架 -->
+        <section>
+            <header class="header clearfix">
+                <h2 class="pull-left"><i class="icon icon-new"></i>新品上架</h2>
+            </header>
+            <ion-scroll delegate-handle="generalScroll" direction="x" scrollbar-x="false" locking="true" zooming="false" has-bouncing="true" paging="false" class="carousel" ng-if="carousels.List.length>1">
+                <ion-list>
+                    <ion-item ui-sref="detail" class="carousel-item" ng-repeat="item in carousels.List">
+                        <div class="carousel-cover">
+                            <img view-src="{{item.Pic.split(',')[0]}}" src="images/default.png" err-src="images/default.png" />
+                        </div>
+                        <div class="carousel-cell">
+                            <h3 ng-bind="item.name"></h3>
+                            <span ng-bind="'￥'+item.Scope3.toFixed(2)+' 起'">￥0</span>
+                        </div>
+                    </ion-item>
+                </ion-list>
+            </ion-scroll>
+            <div class="waitting" ng-if="!flag" ng-bind="paging">正在加载中...</div>
+        </section>
+        <!-- 热销产品 -->
+        <section>
+            <header class="header clearfix">
+                <h2 class="pull-left"><i class="icon icon-hot"></i>热销产品</h2>
+            </header>
+            <ion-list class="hot" delegate-handle="hotScroll" ng-if="hots.data.length>1">
+                <ion-item ui-sref="product.detail({id:item.id})" class="hot-item" ng-repeat="item in hots.data" repeat-done="hotFinish()">
+                    <div class="hot-cover">
+                        <img view-src="{{item.Pic.split(',')[0]}}" src="images/default.png" err-src="images/default.png" />
+                    </div>
+                    <div class="hot-cell">
+                        <h3 class="" ng-bind="item.name"></h3>
+                        <p><span ng-bind="item.Scope3 | currency : '￥'">￥0</span> - <span ng-bind="item.Scope1 | currency : '￥'">￥0</span></p>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <ion-infinite-scroll on-infinite="loadMore()" ng-if="hots.loaded">
+            </ion-infinite-scroll>
+            <div class="paging" ng-class="{show:!hots.loaded}" ng-bind="hots.tips"></div>
+        </section>
+    </ion-content>
+</ion-view>

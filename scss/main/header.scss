@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+
+/**
+ * @desc 列表样式
+ * @author 
+ * @date 2017-08-27
+ */
+
+@import "../mixin/_variable.scss";
+@import "../mixin/_utilities.scss";
+
+
+// top nav bar 
+.bar-header.bar-header {
+    color: $text-white;
+    background-color: $theme-primary;
+
+    >.title {
+        bottom: 0;
+        font-size: 16px;
+    }
+}
+
+.bar-header.bar-back {
+    display: block;
+    display: -webkit-flex;
+    display: flex;
+    position: relative;
+    padding: 10px;
+    &:after {
+        top: -10px;
+        right: -10px;
+        bottom: -10px;
+        left: -10px;
+    }
+    >.title {
+        margin-right: 0;
+        font-weight: normal;
+    }
+
+
+    .nav-bar-title {
+        width: 100%;
+        &.search-wrap {
+            position: relative;
+            display: block;
+            margin: 8px 0;
+            padding: 0 8px;
+            height: 28px;
+            color: $text-light;
+            background-color: $body-bg;
+            border-radius: 15px;
+            >.icon {
+                float: left;
+                line-height: 24px;
+                color: $theme-primary;
+            }
+            >span {
+                float: left;
+                width: 28px;
+                margin-left: 5px;
+                line-height: 28px;
+                font-size: 12px;
+            }
+        }
+    }
+
+    .buttons {
+        position: absolute;
+        top: 10px;
+        bottom: 10px;
+        z-index: 1;
+
+        &.buttons-left {
+            left: 10px;
+            >.left-buttons {
+
+                .button {
+                    padding: 0;
+                    min-height: 24px;
+                    height: 24px;
+                    color: #fff;
+                    font-size: 14px;
+                    line-height: 22px;
+                    border: none;
+                    background: none !important;
+                    box-shadow: none !important;
+                    &:after {
+                        top: -10px;
+                        right: -10px;
+                        bottom: -10px;
+                        left: -10px;
+                    }
+
+                    >i {
+                        float: left;
+                        padding-right: 5px;
+                        font-size: 14px;
+                        line-height: 25px;
+                    }
+                    >span {
+                        max-width: 53px;
+                        margin-right: 5px; // max-width: 53px;
+                        line-height: 24px;
+                        font-size: 15px;
+                        @include lineClamp();
+                    }
+                }
+            }
+        }
+        &.buttons-right {
+            right: 10px;
+            >.right-buttons {
+                .button {
+                    padding: 0;
+                    min-height: 24px;
+                    height: 24px;
+                    color: #fff;
+                    font-size: 14px;
+                    line-height: 22px;
+                    border: none;
+                    background: none !important;
+                    box-shadow: none !important;
+                    &:after {
+                        top: -10px;
+                        right: -10px;
+                        bottom: -10px;
+                        left: -10px;
+                    }
+                    >i {
+                        font-size: 18px;
+                        line-height: 25px;
+                    }
+                }
+            }
+        }
+    }
+}
