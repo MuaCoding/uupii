@@ -32,7 +32,7 @@ uupii.factory('HttpFact', function($q, $http, $timeout, $location, $rootScope, P
                     }
                 });
                 confirm.then(function() {
-                    show = false;
+                    flag = false;
                 })
             };
         }, 20)
@@ -73,9 +73,9 @@ uupii.factory('HttpFact', function($q, $http, $timeout, $location, $rootScope, P
                 $timeout(function() {
                     deferred.reject({ err_code: 3, err_msg: "请登录后再进行操作" });
                 }, 100);
-                if (failureTips) {
-                    loginConfirm("请登录后再进行操作")
-                };
+                // if (failureTips) {
+                //     loginConfirm("请登录后再进行操作")
+                // };
                 return deferred.promise;
             };
 
@@ -88,6 +88,11 @@ uupii.factory('HttpFact', function($q, $http, $timeout, $location, $rootScope, P
             };
 
             return execHttp(httpJson, null, function(request) {
+                if (failureTips) {return};
+                var errCode = [51001, 51002, 51003, 51004, 3];
+                if (errCode.indexOf(request.data.err_code) >= 0) {
+                    loginConfirm("登录状态失效，请重新登录");
+                };
                 if (failureTips && request.status == 401) {
                     loginConfirm("登录状态失效，请重新登录");
                     return;

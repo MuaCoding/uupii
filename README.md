@@ -1,2 +1,2 @@
 # uupii
-ionic + angularjs创建一个移动端web
+ionic + angularjs create mobile app web

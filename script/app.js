@@ -61,7 +61,7 @@ uupii.run(function($rootScope, $state, $location, $timeout, $ionicHistory, $ioni
         $state.go(to, params, options);
     };
     // route change start event
-    $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
+    $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
         // popover not close, stop router change 
         if (PopoverFact.shown()) {
             PopoverFact.hide(PopoverFact.shown());
@@ -104,7 +104,7 @@ uupii.run(function($rootScope, $state, $location, $timeout, $ionicHistory, $ioni
         }
         // need login direct Jump login page
         if (flag && !whether_login()) {
-            event.preventDefault();
+            // event.preventDefault();  ？？？？？？
             $rootScope.Jump_login();
         };
 
@@ -123,6 +123,8 @@ uupii.run(function($rootScope, $state, $location, $timeout, $ionicHistory, $ioni
         localStorage.removeItem("openId");
         localStorage.removeItem("user_token");
         localStorage.removeItem("in_exp");
-        $location.url("login" + (url ? ("?url=" + url) : ""));
+        $timeout(function(){
+            $location.url("login" + (url ? ("?url=" + url) : ""));
+        },1500)
     }
 });

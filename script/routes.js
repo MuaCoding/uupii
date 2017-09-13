@@ -64,7 +64,8 @@ uupii.config(function($stateProvider) {
         .state('user.index', {
             url: "/index",
             templateUrl: "/views/user/index.html",
-            controller: "userCtrl"
+            controller: "userCtrl",
+            login: true
         })
 
         // user center page
