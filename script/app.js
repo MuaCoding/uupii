@@ -8,7 +8,7 @@ var uupii = angular.module('uupii', [
     'uupii.filters',
     'uupii.routes',
     'uupii.controllers' //主模块
-]);
+])
 
 uupii.config(function($ionicConfigProvider, $locationProvider, $urlRouterProvider) {
     $locationProvider.html5Mode(true);
