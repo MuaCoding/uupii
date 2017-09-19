@@ -1,9 +1,6 @@
 @charset "UTF-8";
 
 
-
-
-
 /**
  * @desc 列表样式
  * @author 
@@ -61,7 +58,7 @@ tabs.footer-tabs {
         @extend %button-full;
         @include flex-full();
 
-        &+button {
+        & + button {
             border-left: 1px solid $border;
         }
     }
@@ -97,7 +94,7 @@ tabs.footer-tabs {
             display: inline-block;
             font-size: 13px;
             height: 26px;
-            &+.link {
+            & +.link {
                 padding-left: 20px;
                 margin-left: 20px;
                 color: $text-base;

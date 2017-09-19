@@ -88,20 +88,13 @@ uupii.factory('HttpFact', function($q, $http, $timeout, $location, $rootScope, P
             };
 
             return execHttp(httpJson, null, function(request) {
-<<<<<<< Updated upstream
                 if (failureTips) {return};
-                var errCode = [51001, 51002, 51003, 51004, 3];
-                if (errCode.indexOf(request.data.err_code) >= 0) {
-                    loginConfirm("登录状态失效，请重新登录");
-                };
-                if (failureTips && request.status == 401) {
-=======
+                
                 var errCode = [51001, 51002, 51003, 51004, 3];
                 if (errCode.indexOf(request.data.err_code) >= 0) {
                     loginConfirm("登录状态失效，请重新登录");
                 }
                 if (failureTips && (request.status == 401 || request.status == 403)) {
->>>>>>> Stashed changes
                     loginConfirm("登录状态失效，请重新登录");
                     return;
                 };
