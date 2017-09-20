@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 /**
  * @desc 独立块样式
  * @author 
@@ -27,13 +28,48 @@ section>.header {
     display: block;
     padding: 10px;
     >h2 {
-        font-size: 15px;
-        line-height: 24px;
+        font-size: 14px;
+        line-height: 26px;
         color: $text-darker;
 
         >.icon {
-            color: $theme-primary;
+            color: $text-primary;
             margin-right: 5px;
+        }
+    }
+
+    >.price {
+        display: block;
+        padding: 8px 0;
+        font-size: 18px;
+        color: $text-primary;
+    }
+
+    >.number {
+        display: block;
+        font-size: 12px;
+        line-height: 26px;
+        color: $text;
+        span+span {
+            margin-left: 60px;
+        }
+    }
+}
+
+section .service {
+    display: block;
+    padding: 10px;
+    background-color: #fafafa;
+    span {
+        color: $text;
+        font-size: 12px;
+        i{
+            font-size: 13px;
+            margin-right: 3px;
+            color: $theme-primary;
+        }
+        & + span {
+            margin-left: 10px;
         }
     }
 }
@@ -139,7 +175,7 @@ section .hot {
                         font-size: 15px;
                     }
 
-                    >p{
+                    >p {
                         line-height: 20px;
                         span {
                             font-size: 12px;

@@ -102,6 +102,7 @@ uupii.run(function($rootScope, $state, $location, $timeout, $ionicHistory, $ioni
             var state = $state.get(current);
             flag = typeof(state.login) == "undefined" ? flag : state.login;
         }
+
         // need login direct Jump login page
         if (flag && !whether_login()) {
             // event.preventDefault();  ？？？？？？

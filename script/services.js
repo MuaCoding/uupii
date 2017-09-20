@@ -331,7 +331,6 @@ uupii.factory('LoadingFact', function($ionicLoading) {
     }
 })
 
-
 //提示文字框
 uupii.factory('errorServices', function($ionicLoading, $timeout) {
     return {

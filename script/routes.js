@@ -58,8 +58,7 @@ uupii.config(function($stateProvider) {
         .state('user', {
             abstract: true, //设置这个界面为母版界面
             url: "/user",
-            template: '<ion-nav-view></ion-nav-view>',
-            login: true  //
+            template: '<ion-nav-view></ion-nav-view>'
         })
         .state('user.index', {
             url: "/index",

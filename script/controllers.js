@@ -237,8 +237,8 @@ uupii.controller("loginCtrl", function($scope, $state, $rootScope, $timeout, Htt
 // product detail
 uupii.controller("product.detailCtrl", function($q, $scope, $state, $stateParams, $timeout, $ionicSlideBoxDelegate, $ionicScrollDelegate, HttpFact, ListFact, PopupFact, ModalFact){
     $scope.input = {};
-    // query 
-    function queryCarousel() {
+    // query product detail
+    function queryDetail() {
         return HttpFact.User("GET", apiDomain + "/Product/getProductDetail",{}, { "id": $stateParams.id }, {}).then(
             function(data) {
                 if (data) {
@@ -260,11 +260,28 @@ uupii.controller("product.detailCtrl", function($q, $scope, $state, $stateParams
                     }, 20);
                 }
                 data[0].photo = photo;
-                $scope.carousel = data;
-                console.log($scope.carousel)
+                $scope.detail = data;
+                console.log($scope.detail)
             },
             function(data) {
-                $scope.carousel = null;
+                $scope.detail = null;
+                var errMsg = data.err_msg || "未知错误";
+                PopupFact.alert("错误", errMsg);
+            }
+        );
+    }
+
+    // query product parameter
+    function queryParameter(){
+        return HttpFact.User("GET", apiDomain + "/Product/getProductParame",{}, { "id": $stateParams.id }, {}).then(
+            function(data) {
+                if (data) {
+                    $scope.parameter = data;
+                }
+                console.log(data)
+            },
+            function(data) {
+                $scope.parameter = null;
                 var errMsg = data.err_msg || "未知错误";
                 PopupFact.alert("错误", errMsg);
             }
@@ -272,7 +289,7 @@ uupii.controller("product.detailCtrl", function($q, $scope, $state, $stateParams
     }
     // refresh data 
     $scope.refresh = function () {
-        $q.all([queryCarousel()]).then(function () {
+        $q.all([queryDetail(),queryParameter()]).then(function () {
           //更新Scroll
           $ionicScrollDelegate.resize();
           //告诉IONIC框架，刷新完毕

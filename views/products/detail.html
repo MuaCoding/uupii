@@ -13,18 +13,18 @@
 	    </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-title>
-        <em ng-bind="carousel[0].name">详情</em>
+        <em ng-bind="detail[0].name">详情</em>
     </ion-nav-title>
     
     <ion-content has-bouncing="false">
         <!--幻灯片轮播-->
-        <ion-slide-box class="vw65" on-slide-changed="slideHasChanged($index)" delegate-handle="carousel" does-continue="true" auto-play="true" slide-interval="4000" show-pager="{{carousel.length>=1}}">
-            <ion-slide ng-if="!carousel.length>0">
+        <ion-slide-box class="vw65" on-slide-changed="slideHasChanged($index)" delegate-handle="carousel" does-continue="true" auto-play="true" slide-interval="4000" show-pager="{{detail.length>=1}}">
+            <ion-slide ng-if="!detail.length>0">
                 <a>
                     <img src="images/default.png" err-src="images/default.png" />
                 </a>
             </ion-slide>
-            <ion-slide ng-repeat="item in carousel[0].photo track by $index">
+            <ion-slide ng-repeat="item in detail[0].photo track by $index">
                 <a>
                     <img view-src="{{item}}" src="images/default.png" err-src="images/default.png" alt="{{item.title}}"/>
                 </a>
@@ -32,9 +32,11 @@
         </ion-slide-box>
         <section>
             <header class="header clearfix">
-                <h2 class="pull-left"><em ng-bind="carousel[0].name">产品</em></h2>
+                <h2 class=""><em ng-bind="detail[0].name">产品</em></h2>
+                <money class="price" ng-bind="detail[0].priceOriginal | currency : '￥'">￥0</money>
+                <p class="number"><span>最低起订量：<em ng-bind="detail[0].minBuy">1</em></span><span>总供货量：<em ng-bind="parameter[0].storage">1</em></span></p>
             </header>
-            
+            <div class="service"><span><i class="icon-checked-hollow"></i>支持包邮</span><span><i class="icon-checked-hollow"></i>交易保障</span></div>
         </section>
     </ion-content>
     <ion-footer-bar class="bar-button">

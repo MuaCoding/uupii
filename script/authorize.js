@@ -19,6 +19,7 @@ function whether_signin() {
     } else {
         var payload = localStorage.getItem("user_token").split('.')[1];
         var lsExp = localStorage.getItem("in_exp");
+        alert(lsExp)
         var exp = new Date(lsExp);
         var now = new Date();
         if (exp - now <= 0) {
@@ -50,13 +51,14 @@ function whether_login() {
     //     return false;
     // }
     else {
-        return true;
         var payload = localStorage.getItem("user_token").split('.')[1];
-        // var lsExp = localStorage.getItem("in_exp");
+        // var lsExp = localStorage.getItem("7");
         var now = new Date();
         var lsExp = new Date(now.setDate(now.getDate()+7));
         var exp = new Date(lsExp);
+        alert(lsExp)
         if (exp - now <= 0) {
+            alert(exp)
             return false;
         } else {
             var lmt = JSON.parse(atob(payload))["lmt"];
