@@ -52,15 +52,14 @@ function whether_login() {
     // }
     else {
         var payload = localStorage.getItem("user_token").split('.')[1];
-        // var lsExp = localStorage.getItem("7");
         var now = new Date();
-        var lsExp = new Date(now.setDate(now.getDate()+7));
+        var lsExp = now.setDate(now.getDate() + 7);
         var exp = new Date(lsExp);
-        alert(lsExp)
-        if (exp - now <= 0) {
-            alert(exp)
+        // var lsExp = now.setDate(now.getDate()+7);
+        if (lsExp - now < 0) {
             return false;
         } else {
+            return true;
             var lmt = JSON.parse(atob(payload))["lmt"];
             var nowLmt = new Fingerprint().get();
             if (lmt == nowLmt) {

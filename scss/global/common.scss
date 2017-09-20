@@ -69,7 +69,9 @@ textarea {
 .text-overflow {
     @include text-overflow();
 }
-
+.text-center{
+    text-align: center;
+}
 
 
 .block {

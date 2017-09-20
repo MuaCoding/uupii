@@ -188,7 +188,26 @@ section .hot {
     }
 }
 
-section .user-header {
+
+// detail page style 
+section .shop-entry {
+    a{
+        width: 48%;
+        height: 36px;
+        font-size: 13px;
+        line-height: 36px;
+        border: 1px solid $border;
+        text-align: center;
+        color: $text;
+        &:nth-child(1){float:left}
+        &:nth-child(2){float:right}
+        >i {
+            margin-right: 5px;
+        }
+    }
+}
+
+section .user-header,.shop-header {
     position: relative;
     display: block;
     padding: 15px;
