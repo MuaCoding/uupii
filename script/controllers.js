@@ -316,3 +316,34 @@ uupii.controller("product.detailCtrl", function($q, $scope, $state, $stateParams
         $scope.refresh();
     });
 });
+
+uupii.controller("product.storeCtrl", function($q, $scope) {
+    // query brand information
+    function queryBrand(){
+        return HttpFact.User("GET", apiDomain + "/product/get_provAgent",{}, { "id": $stateParams.id }, {}).then(
+            function(data) {
+                if (data) {
+                    $scope.brand = data;
+                }
+                console.log(data)
+            },
+            function(data) {
+                $scope.brand = null;
+                var errMsg = data.err_msg || "未知错误";
+                PopupFact.alert("错误", errMsg);
+            }
+        );
+    }
+    // refresh data 
+    $scope.refresh = function () {
+        $q.all([queryDetail(),queryParameter(),queryBrand()]).then(function () {
+          //更新Scroll
+          $ionicScrollDelegate.resize();
+          //告诉IONIC框架，刷新完毕
+          $scope.$broadcast("scroll.refreshComplete");
+        })
+    }
+    $scope.$on("$ionicView.loaded", function(event, view) {
+        $scope.refresh();
+    });
+});

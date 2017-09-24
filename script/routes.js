@@ -2,7 +2,6 @@ var uupii = angular.module('uupii.routes', [])
 
 uupii.config(function($stateProvider) {
     $stateProvider
-        
         // index page
         .state('index', {
             url: "/index",
@@ -80,5 +79,11 @@ uupii.config(function($stateProvider) {
             controller: "product.detailCtrl",
             login: true  //
         })
-        
+        // product detail 
+        .state('product.store', {
+            url: "/store/{id:[0-9]*}",
+            templateUrl: "views/products/store.html",
+            controller: "product.storeCtrl",
+            login: true  //
+        })
 });

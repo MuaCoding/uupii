@@ -33,7 +33,7 @@
             </header>
             <ion-scroll delegate-handle="generalScroll" direction="x" scrollbar-x="false" locking="true" zooming="false" has-bouncing="true" paging="false" class="carousel" ng-if="carousels.List.length>1">
                 <ion-list>
-                    <ion-item ui-sref="detail" class="carousel-item" ng-repeat="item in carousels.List">
+                    <ion-item ui-sref="product.detail({id:item.id})" class="carousel-item" ng-repeat="item in carousels.List">
                         <div class="carousel-cover">
                             <img view-src="{{item.Pic.split(',')[0]}}" src="images/default.png" err-src="images/default.png" />
                         </div>
