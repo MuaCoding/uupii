@@ -32,10 +32,11 @@ section+section {
 
 // section common style
 section>.header {
+    position: relative;
     display: block;
     padding: 10px;
     >h2 {
-        font-size: 14px;
+        font-size: 15px;
         line-height: 26px;
         color: $text-darker;
 
@@ -43,6 +44,10 @@ section>.header {
             color: $text-primary;
             margin-right: 5px;
         }
+    }
+
+    .label {
+        color: $text;
     }
 
     >.price {
@@ -282,12 +287,14 @@ section .pro-list {
 
 // detail page style 
 section .shop-entry {
+    padding: 10px 15px;
     a {
         width: 48%;
         height: 36px;
         font-size: 13px;
         line-height: 36px;
         border: 1px solid $border;
+        border-radius: 2px;
         text-align: center;
         color: $text;
         &:nth-child(1) {
@@ -301,6 +308,14 @@ section .shop-entry {
         }
     }
 }
+
+section .shop-welcome{
+    position: relative;
+    top: -10px;
+    font-size: 12px;
+    color: $text-lighter;
+}
+
 
 // detail page service style 
 section .service {
@@ -320,25 +335,25 @@ section .service {
             margin-left: 10px;
         }
     }
+}
 
-    .more {
-        position: absolute;
-        top: 50%;
-        right: 15px;
-        height: 12px;
-        line-height: 5px;
-        transform: translate3d(0, -50%, 0);
-        -webkit-transform: translate3d(0, -50%, 0);
-        em {
-            color: $text-base;
-            font-weight: 600;
-            margin-left: 1px;
-            &:first-child{
-                color: #ccc;
-            }
-            &:nth-child(2){
-                color: #98989f;
-            }
+section .more {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    height: 12px;
+    line-height: 5px;
+    transform: translate3d(0, -50%, 0);
+    -webkit-transform: translate3d(0, -50%, 0);
+    em {
+        color: $text-base;
+        font-weight: 600;
+        margin-left: 1px;
+        &:first-child{
+            color: #ccc;
+        }
+        &:nth-child(2){
+            color: #98989f;
         }
     }
 }

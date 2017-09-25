@@ -235,7 +235,7 @@ uupii.controller("loginCtrl", function($scope, $state, $rootScope, $timeout, Htt
 });
 
 // product detail page 
-uupii.controller("product.detailCtrl", function($q, $scope, $state, $stateParams, $timeout, $ionicSlideBoxDelegate, $ionicScrollDelegate, HttpFact, ListFact, PopupFact, ModalFact){
+uupii.controller("product.detailCtrl", function($q, $scope, $state, $stateParams, $timeout, $ionicSlideBoxDelegate, $ionicScrollDelegate, HttpFact, ListFact, PopupFact, ModalFact, PopoverFact){
     $scope.input = {};
     // query product detail
     function queryDetail() {
@@ -303,6 +303,19 @@ uupii.controller("product.detailCtrl", function($q, $scope, $state, $stateParams
             }
         );
     }
+
+    // view servier Explain
+    var servierPopover = null;
+    $scope.view_explain = function(){
+        PopoverFact.show($scope, "service.html").then(function(popover){
+            servierPopover = popover;
+        })
+    }
+
+    // close 
+    $scope.close_explain = function(){
+        PopoverFact.hide(servierPopover)
+    }
     // refresh data 
     $scope.refresh = function () {
         $q.all([queryDetail(),queryParameter(),queryBrand()]).then(function () {
@@ -343,7 +356,7 @@ uupii.controller("product.storeCtrl", function($q, $scope, $state, $stateParams,
             pros.next();
         }
     };
-
+    // 收藏点击事件
     $scope.like_action = function(id){
         console.log(id)
         return HttpFact.User("POST", apiDomain + "/User/Add_Collect_ProvAgent", { "pa_id": id },{}, {}).then(
@@ -362,7 +375,7 @@ uupii.controller("product.storeCtrl", function($q, $scope, $state, $stateParams,
             }
         );
     }
-
+    // 申请点击事件
     $scope.apply_action = function(store){
         if (store[0].IsVip == 1) {
             PopupFact.alert("提示","您已是本店会员");

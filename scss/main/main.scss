@@ -233,3 +233,74 @@
     }
 }
 
+.popover.service-explian{
+    position: relative;
+    overflow: hidden;
+    top: unset;
+    left: unset;
+    width: 100vw;
+    height: 110vw;
+    margin: 0;
+    border-radius: 0;
+    opacity: 1;
+    transform-origin: 0px 0px 0px;
+    transform: scale(1, 1);
+    .bar-header {
+        background-color: #fff;
+        color: $text;
+        >h2{
+            font-size: 15px;
+        }
+    }
+    .fourth-cells {
+        position: relative;
+        overflow: hidden;
+        .icon {
+            margin-top: 4px;
+            color: $theme-primary;
+        }
+        .fourth-cell {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            position: relative;
+            padding: 10px;
+            & + .fourth-cell:before{
+                content: " ";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 94%;
+                left: 3%;
+                height: 1px;
+                border-top: 1px solid #ddd;
+                color: #ddd;
+                -webkit-transform-origin: 0 0;
+                transform-origin: 0 0;
+                -webkit-transform: scaleY(.5);
+                transform: scaleY(.5);
+            }
+        }
+        .cell-content {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            padding: 0 6px;
+            color: $text;
+            font-size: 14px;
+            color: $text;
+            h3 {
+                margin-right: 10px;
+                color: $text-base;
+                font-weight: 400;
+            }
+            p{
+                font-size: 13px;
+                line-height: 20px;
+            }
+        }
+    }
+}

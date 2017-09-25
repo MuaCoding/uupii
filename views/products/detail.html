@@ -38,13 +38,23 @@
                 <money class="price" ng-bind="detail[0].priceOriginal | currency : '￥'">￥0</money>
                 <p class="number"><span>最低起订量：<em ng-bind="detail[0].minBuy">1</em></span><span>总供货量：<em ng-bind="parameter[0].storage">1</em></span></p>
             </header>
-            <div class="service"><span><i class="icon-checked-hollow"></i>支持包邮</span><span><i class="icon-checked-hollow"></i>交易保障</span><span><i class="icon-checked-hollow"></i>会员购买</span><div class="more"><em>.</em><em>.</em><em>.</em></div></div>
+            
+        </section>
+        <!-- 选择购买类型 -->
+        <section>
+            <header class="header"><span class="label">已选：</span><em>已选</em><div class="more" ng-click=""><em>.</em><em>.</em><em>.</em></div></div></header>
+        </section>
+        <!-- 选择地址 -->
+        <section>
+            <header class="header"><span class="label">送至：</span><em>已选</em><div class="more" ng-click=""><em>.</em><em>.</em><em>.</em></div></div></header>
+            <div class="service" ng-click="view_explain()"><span ng-if="brand[0].IsFreight"><i class="icon-checked-hollow"></i>支持包邮</span><span><i class="icon-checked-hollow"></i>交易保障</span><span ng-if="brand[0].IsVipBuy"><i class="icon-checked-hollow"></i>会员购买</span><div class="more"><em>.</em><em>.</em><em>.</em></div></div>
         </section>
         <section>
-            <header class="header text-center"><h2><em ng-bind="brand[0].nick">产品</em></h2></header>
-            <div class="shop-service">
+            <header class="header text-center"><h2><em ng-bind="brand[0].nick">旗舰店</em></h2></header>
+            <div class="shop-welcome text-center">
+                <em ng-bind="brand[0].nick"></em>欢迎您
             </div>
-            <div class="wrap shop-entry clearfix">
+            <div class="shop-entry clearfix">
                 <a><i class="icon-star-empty"></i>收藏店铺</a>
                 <a ui-sref="product.store({id:brand[0].ProvAgentId})"><i class="icon-seller"></i>进入店铺</a>
             </div>
@@ -55,11 +65,68 @@
         <button type="button">加入进货单</button>
         <button type="button">立即购买</button>
     </ion-footer-bar>
+    <!-- service modal -->
     <script id="service.html" type="text/ng-template">
-        <ion-modal-view>
+        <ion-popover-view class="service-explian">
             <ion-header-bar class="header-bar">
-                服务声明
+                <h2 class="title">服务声明</h2>
             </ion-header-bar>
-        </ion-modal-view>
+            <ion-content has-bouncing="false">
+
+            </ion-content>
+            <ion-footer-bar class="bar-button">
+                <button type="button" ng-click="close_explain()">确定</button>
+            </ion-footer-bar>
+        </ion-popover-view>
+    </script>
+    <!-- service modal -->
+    <script id="service.html" type="text/ng-template">
+        <ion-popover-view class="service-explian">
+            <ion-header-bar class="header-bar">
+                <h2 class="title">服务声明</h2>
+            </ion-header-bar>
+            <ion-content has-bouncing="false">
+            <div class="fourth-cells">
+                <div class="fourth-cell">
+                    <i class="icon icon-checked-hollow"></i>
+                    <div class="cell-content">
+                        <h3>支持包邮</h3>
+                        <p>满<em ng-bind="brand[0].Freight"></em>免运费（物流费用以实际交易情况为准）</p>
+                    </div>
+                </div>
+                <div class="fourth-cell">
+                    <i class="icon icon-checked-hollow"></i>
+                    <div class="cell-content">
+                        <h3>极速发货</h3>
+                        <p>24小时发货</p>
+                    </div>
+                </div>
+                <div class="fourth-cell">
+                    <i class="icon icon-checked-hollow"></i>
+                    <div class="cell-content">
+                        <h3>交易保障</h3>
+                        <p>自实际收货日期的次日起15天内，商品完好，可进行无理由退货</p>
+                    </div>
+                </div>
+                <div class="fourth-cell">
+                    <i class="icon icon-checked-hollow"></i>
+                    <div class="cell-content">
+                        <h3>会员购买</h3>
+                        <p>需申请成为其该店铺的会员，商品才能购买</p>
+                    </div>
+                </div>
+                <div class="fourth-cell">
+                    <i class="icon icon-checked-hollow"></i>
+                    <div class="cell-content">
+                        <h3>自提</h3>
+                        <p>自提免运费，支持门店自提点、自助提货柜等自助服务</p>
+                    </div>
+                </div>
+            </div>
+            </ion-content>
+            <ion-footer-bar class="bar-button">
+                <button type="button" ng-click="close_explain()">确定</button>
+            </ion-footer-bar>
+        </ion-popover-view>
     </script>
 </ion-view>

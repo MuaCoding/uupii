@@ -165,7 +165,7 @@ uupii.factory('PopupFact', function($ionicPopup) {
 })
 
 // modal window
-uupii.factory('ModalFact', function($timeout, $ionicPopover, $ionicBody, LoadingFact) {
+uupii.factory('ModalFact', function($timeout, $ionicModal, $ionicBody, LoadingFact) {
     var modalList = [],
         that = null;
 
