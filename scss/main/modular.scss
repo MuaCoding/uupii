@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 
+
 /**
  * @desc 独立块样式
  * @author 
@@ -11,11 +12,17 @@
 @import "../mixin/_utilities.scss";
 
 
+
+/*************- common style start -***************/
+
 section {
     position: relative;
     overflow: hidden;
     background-color: $body-bg;
     box-shadow: 0px 2px 3px rgba(0, 0, 0, .1);
+    &:last-child{
+        box-shadow: 0px 0px 0px transparent;
+    }
 }
 
 section+section {
@@ -56,24 +63,6 @@ section>.header {
     }
 }
 
-section .service {
-    display: block;
-    padding: 10px;
-    background-color: #fafafa;
-    span {
-        color: $text;
-        font-size: 12px;
-        i{
-            font-size: 13px;
-            margin-right: 3px;
-            color: $theme-primary;
-        }
-        & + span {
-            margin-left: 10px;
-        }
-    }
-}
-
 section>.waitting {
     display: block;
     padding: 15px;
@@ -82,6 +71,106 @@ section>.waitting {
     text-align: center;
 }
 
+// section common
+section .list-group {
+    display: block;
+    >a {
+        &.activated {
+            background-color: $body-bg;
+            border-color: #ddd;
+        }
+        padding-left: 50px;
+        font-size: 15px;
+        >.icon {
+            font-size: 27px;
+
+            &.icon-location {
+                color: #ed7844;
+            }
+            &.icon-msg {
+                color: $theme-success;
+            }
+            &.icon-box {
+                color: #dfc377;
+            }
+            &.icon-star {
+                color: #f7e441;
+            }
+            &.icon-review {
+                color: #77addf;
+            }
+            &.icon-jxc {
+                color: #888888;
+            }
+        }
+
+        >.badge {
+            right: 15px;
+            border-radius: 50%;
+        }
+    }
+}
+
+// bar button, two button flex
+section .button-bar {
+    display: -webkit-flex;
+    display: flex;
+    height: 45px;
+    line-height: 45px;
+    border-top: 1px solid $border;
+    >button {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        font-size: 13px;
+        color: $text-dark;
+        i {
+            margin-right: 5px;
+        }
+
+        &+button {
+            border-left: 1px solid $border;
+        }
+
+        &.active {
+            color: $theme-like;
+        }
+    }
+}
+
+// form style -- login --- signin -- forgot -- 
+section .input-group {
+    position: relative;
+    display: block;
+    padding: 15px;
+    border-bottom: 1px solid $border;
+    &.addon {
+        padding-left: 25%;
+    }
+    >.input-mark {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 14px;
+        height: 38px;
+        line-height: 38px;
+    }
+
+    >input {
+        color: $text-base;
+    }
+
+    >.smscode {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        width: 100px;
+        height: 34px;
+        background-size: contain !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+    }
+}
 
 // new new carousel style
 section>.carousel {
@@ -140,15 +229,14 @@ section>.carousel {
     }
 }
 
-
-// hot style
-section .hot {
+// product style
+section .pro-list {
     display: block;
     overflow: hidden;
     padding: 0 5px 5px;
 
     .list {
-        >.hot-item {
+        >.pro-item {
             display: block;
             overflow: hidden;
             width: 48%;
@@ -162,13 +250,13 @@ section .hot {
                     background-color: $body-bg;
                 }
 
-                >.hot-cover {
+                >.pro-cover {
                     display: block;
                     overflow: hidden;
                     font-size: 0;
-                    max-height: 130px;
+                    height: 130px;
                 }
-                >.hot-cell {
+                >.pro-cell {
                     display: block;
                     margin-top: 10px;
                     >h3 {
@@ -189,9 +277,12 @@ section .hot {
 }
 
 
+
+/*************- common style end -***************/
+
 // detail page style 
 section .shop-entry {
-    a{
+    a {
         width: 48%;
         height: 36px;
         font-size: 13px;
@@ -199,14 +290,106 @@ section .shop-entry {
         border: 1px solid $border;
         text-align: center;
         color: $text;
-        &:nth-child(1){float:left}
-        &:nth-child(2){float:right}
+        &:nth-child(1) {
+            float: left
+        }
+        &:nth-child(2) {
+            float: right
+        }
         >i {
             margin-right: 5px;
         }
     }
 }
 
+// detail page service style 
+section .service {
+    position: relative;
+    display: block;
+    padding: 10px;
+    background-color: #fafafa;
+    span {
+        color: $text;
+        font-size: 12px;
+        i {
+            font-size: 13px;
+            margin-right: 3px;
+            color: $theme-primary;
+        }
+        &+span {
+            margin-left: 10px;
+        }
+    }
+
+    .more {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        height: 12px;
+        line-height: 5px;
+        transform: translate3d(0, -50%, 0);
+        -webkit-transform: translate3d(0, -50%, 0);
+        em {
+            color: $text-base;
+            font-weight: 600;
+            margin-left: 1px;
+            &:first-child{
+                color: #ccc;
+            }
+            &:nth-child(2){
+                color: #98989f;
+            }
+        }
+    }
+}
+
+// store style 
+section .store {
+    position: relative;
+    overflow: hidden;
+
+    .store-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        .store-cover {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            text-align: center;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            img {
+                width: 25vw;
+                border: 1px solid $border;
+                border-radius: 50%;
+                background-color: #fff;
+                overflow: hidden;
+            }
+
+            h1 {
+                margin: 0;
+                font-weight: normal;
+                font-size: 15px;
+                line-height: 25px;
+                color: $text-darker;
+            }
+
+            p {
+                margin: 0;
+                font-weight: normal;
+                font-size: 12px;
+                line-height: 25px;
+                color: $text;
+            }
+        }
+    }
+}
+
+// user center style
 section .user-header {
     position: relative;
     display: block;
@@ -299,80 +482,5 @@ section .nav {
 
     .nav-wrap+.nav-wrap {
         border-left: 1px solid $border;
-    }
-}
-
-section .list-group {
-    display: block;
-    >a {
-        &.activated {
-            background-color: $body-bg;
-            border-color: #ddd;
-        }
-        padding-left: 50px;
-        font-size: 15px;
-        >.icon {
-            font-size: 27px;
-
-            &.icon-location {
-                color: #ed7844;
-            }
-            &.icon-msg {
-                color: $theme-success;
-            }
-            &.icon-box {
-                color: #dfc377;
-            }
-            &.icon-star {
-                color: #f7e441;
-            }
-            &.icon-review {
-                color: #77addf;
-            }
-            &.icon-jxc {
-                color: #888888;
-            }
-        }
-
-        >.badge {
-            right: 15px;
-            border-radius: 50%;
-        }
-    }
-}
-
-
-
-// form style -- login --- signin -- forgot -- 
-section .input-group {
-    position: relative;
-    display: block;
-    padding: 15px;
-    border-bottom: 1px solid $border;
-    &.addon {
-        padding-left: 25%;
-    }
-    >.input-mark {
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        font-size: 14px;
-        height: 38px;
-        line-height: 38px;
-    }
-
-    >input {
-        color: $text-base;
-    }
-
-    >.smscode {
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        width: 100px;
-        height: 34px;
-        background-size: contain !important;
-        background-position: center center !important;
-        background-repeat: no-repeat !important;
     }
 }

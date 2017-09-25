@@ -51,12 +51,12 @@
             <header class="header clearfix">
                 <h2 class="pull-left"><i class="icon icon-hot"></i>热销产品</h2>
             </header>
-            <ion-list class="hot" delegate-handle="hotScroll" ng-if="hots.data.length>1">
-                <ion-item ui-sref="product.detail({id:item.id})" class="hot-item" ng-repeat="item in hots.data" repeat-done="hotFinish()">
-                    <div class="hot-cover">
+            <ion-list class="pro-list" delegate-handle="hotScroll" ng-if="hots.data.length>1">
+                <ion-item ui-sref="product.detail({id:item.id})" class="pro-item" ng-repeat="item in hots.data" repeat-done="hotFinish()">
+                    <div class="pro-cover">
                         <img view-src="{{item.Pic.split(',')[0]}}" src="images/default.png" err-src="images/default.png" />
                     </div>
-                    <div class="hot-cell">
+                    <div class="pro-cell">
                         <h3 class="" ng-bind="item.name"></h3>
                         <p><span ng-bind="item.Scope3 | currency : '￥'">￥0</span> - <span ng-bind="item.Scope1 | currency : '￥'">￥0</span></p>
                     </div>

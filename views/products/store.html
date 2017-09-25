@@ -5,52 +5,46 @@
                 <i class="icon-back"></i>
             </button>
         </ion-nav-buttons>
-        <ion-nav-buttons side="right">
-	        <button class="button">
-	            <i class="icon-star-empty"></i>
-	            <span class="point" ng-if="hasUnread"></span>
-	        </button>
-	    </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-title>
-        <em ng-bind="detail[0].name">详情</em>
+        <em ng-bind="store[0].nick">店铺详情</em>
     </ion-nav-title>
-    
     <ion-content has-bouncing="false">
-        <!--幻灯片轮播-->
-        <ion-slide-box class="vw65" on-slide-changed="slideHasChanged($index)" delegate-handle="carousel" does-continue="true" auto-play="true" slide-interval="4000" show-pager="{{detail.length>=1}}">
-            <ion-slide ng-if="!detail.length>0">
-                <a>
-                    <img src="images/default.png" err-src="images/default.png" />
-                </a>
-            </ion-slide>
-            <ion-slide ng-repeat="item in detail[0].photo track by $index">
-                <a>
-                    <img view-src="{{item}}" src="images/default.png" err-src="images/default.png" alt="{{item.title}}"/>
-                </a>
-            </ion-slide>
-        </ion-slide-box>
+        <ion-refresher pulling-text="下拉刷新" on-refresh="refresh()">
+        </ion-refresher>
+        <!-- 品牌商主要信息 -->
         <section>
-            <header class="header clearfix">
-                <h2 class=""><em ng-bind="detail[0].name">产品</em></h2>
-                <money class="price" ng-bind="detail[0].priceOriginal | currency : '￥'">￥0</money>
-                <p class="number"><span>最低起订量：<em ng-bind="detail[0].minBuy">1</em></span><span>总供货量：<em ng-bind="parameter[0].storage">1</em></span></p>
-            </header>
-            <div class="service"><span><i class="icon-checked-hollow"></i>支持包邮</span><span><i class="icon-checked-hollow"></i>交易保障</span><span><i class="icon-checked-hollow"></i>会员购买</span></div>
-        </section>
-        <section>
-            <header class="header text-center"><h2><em ng-bind="brand[0].nick">产品</em></h2></header>
-            <div class="shop-service">
+            <div class="store">
+                <img src="/images/store_bg.png">
+                <div class="store-box">
+                    <div class="store-cover">
+                        <img view-src="{{store[0].logo}}" alt="" src="/images/default.png" err-src="/images/default.png">
+                        <h1><em ng-bind="store[0].nick">旗舰店</em></h1>
+                        <p>所在地区：<span ng-bind="store[0].prov+store[0].city">广东省深圳市</span></p>
+                    </div>
+                </div>
             </div>
-            <div class="wrap shop-entry clearfix">
-                <a><i class="icon-star-empty"></i>收藏店铺</a>
-                <a><i class="icon-seller"></i>进入店铺</a>
+            <div class="button-bar">
+                <button type="button" ng-click="like_action(store[0].ProvAgentId)" ng-class="{'active': input.like == true}"><i class="icon-star-empty" ng-class="{'icon-star': input.like == true}"></i><em ng-if="input.like == false">收藏店铺</em><em ng-if="input.like == true">收藏成功</em></button>
+                <button type="button" ng-click="apply_action(store)" ng-class="{'active': store[0].IsVip == 1}"><i class="icon-member" ng-class="{'icon-star': store[0].IsVip == 1}"></i><em ng-if="store[0].IsVip == -2">申请会员</em><em ng-if="store[0].IsVip == 0">正审核中</em><em ng-if="store[0].IsVip == 1">本店会员</em></button>
             </div>
         </section>
-        <section></section>
+        <!-- 品牌商商品列表 -->
+        <section class="transparent">
+            <ion-list class="pro-list" delegate-handle="proScroll" ng-if="pros.data.length>1">
+                <ion-item ui-sref="product.detail({id:item.id})" class="pro-item" ng-repeat="item in pros.data" repeat-done="proFinish()">
+                    <div class="pro-cover">
+                        <img view-src="{{item.Pic.split(',')[0]}}" src="images/default.png" err-src="images/default.png" />
+                    </div>
+                    <div class="pro-cell">
+                        <h3 class="" ng-bind="item.name"></h3>
+                        <p><span ng-bind="item.Scope3 | currency : '￥'">￥0</span> - <span ng-bind="item.Scope1 | currency : '￥'">￥0</span></p>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <ion-infinite-scroll on-infinite="loadMore()" ng-if="pros.loaded">
+            </ion-infinite-scroll>
+            <div class="paging" ng-class="{show:!pros.loaded}" ng-bind="pros.tips"></div>
+        </section>
     </ion-content>
-    <ion-footer-bar class="bar-button">
-        <button type="button">加入进货单</button>
-        <button type="button">立即购买</button>
-    </ion-footer-bar>
 </ion-view>

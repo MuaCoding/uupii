@@ -17,6 +17,8 @@
     </ion-nav-title>
     
     <ion-content has-bouncing="false">
+        <ion-refresher pulling-text="下拉刷新" on-refresh="refresh()">
+        </ion-refresher>
         <!--幻灯片轮播-->
         <ion-slide-box class="vw65" on-slide-changed="slideHasChanged($index)" delegate-handle="carousel" does-continue="true" auto-play="true" slide-interval="4000" show-pager="{{detail.length>=1}}">
             <ion-slide ng-if="!detail.length>0">
@@ -36,7 +38,7 @@
                 <money class="price" ng-bind="detail[0].priceOriginal | currency : '￥'">￥0</money>
                 <p class="number"><span>最低起订量：<em ng-bind="detail[0].minBuy">1</em></span><span>总供货量：<em ng-bind="parameter[0].storage">1</em></span></p>
             </header>
-            <div class="service"><span><i class="icon-checked-hollow"></i>支持包邮</span><span><i class="icon-checked-hollow"></i>交易保障</span><span><i class="icon-checked-hollow"></i>会员购买</span></div>
+            <div class="service"><span><i class="icon-checked-hollow"></i>支持包邮</span><span><i class="icon-checked-hollow"></i>交易保障</span><span><i class="icon-checked-hollow"></i>会员购买</span><div class="more"><em>.</em><em>.</em><em>.</em></div></div>
         </section>
         <section>
             <header class="header text-center"><h2><em ng-bind="brand[0].nick">产品</em></h2></header>
@@ -53,4 +55,11 @@
         <button type="button">加入进货单</button>
         <button type="button">立即购买</button>
     </ion-footer-bar>
+    <script id="service.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="header-bar">
+                服务声明
+            </ion-header-bar>
+        </ion-modal-view>
+    </script>
 </ion-view>

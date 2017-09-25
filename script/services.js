@@ -416,7 +416,7 @@ uupii.factory('ListFact', function(HttpFact) {
             show: function() {
                 //带上页大小和当前页前往获取数据
                 switch(_init.type){
-                    case "hot":
+                    case "pro":
                         _this.parameter.rows = _this.size;
                         break;
                     default:

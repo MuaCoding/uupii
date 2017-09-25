@@ -69,7 +69,7 @@ uupii.controller("indexCtrl", function ($q, $scope, $state, $stateParams, $timeo
         );
     }
     // query hot data
-    var hot = ListFact({user: true, url: apiDomain + "/Product/getProductList", parameter: { "saleSort": 1}, method: true, type: "hot"});
+    var hot = ListFact({user: true, url: apiDomain + "/Product/getProductList", parameter: { "saleSort": 1}, method: true, type: "pro"});
     $scope.hots = hot;
     // loading more
     $scope.loadMore = function(){
@@ -102,11 +102,11 @@ uupii.controller("indexCtrl", function ($q, $scope, $state, $stateParams, $timeo
 uupii.controller("classifyCtrl", function($scope, $stateParams, HttpFact) {
     $scope.$on("$ionicView.loaded", function(event, view) {});
 });
-// product detail page
+// product news page
 uupii.controller("newsCtrl", function($scope, $stateParams, $timeout, $ionicSlideBoxDelegate, $ionicScrollDelegate, HttpFact, PopupFact, ModalFact) {
 
 });
-// product detail page
+// product orders page
 uupii.controller("ordersCtrl", function($scope, $stateParams, $timeout, $ionicSlideBoxDelegate, $ionicScrollDelegate, HttpFact, PopupFact, ModalFact) {
     // directive data commit controller 
     $scope.$on("paramsSelected", function(event, type, params) {
@@ -234,7 +234,7 @@ uupii.controller("loginCtrl", function($scope, $state, $rootScope, $timeout, Htt
     });
 });
 
-// product detail
+// product detail page 
 uupii.controller("product.detailCtrl", function($q, $scope, $state, $stateParams, $timeout, $ionicSlideBoxDelegate, $ionicScrollDelegate, HttpFact, ListFact, PopupFact, ModalFact){
     $scope.input = {};
     // query product detail
@@ -317,32 +317,97 @@ uupii.controller("product.detailCtrl", function($q, $scope, $state, $stateParams
     });
 });
 
-uupii.controller("product.storeCtrl", function($q, $scope) {
+uupii.controller("product.storeCtrl", function($q, $scope, $state, $stateParams, $ionicScrollDelegate, HttpFact, ListFact, PopupFact) {
+    $scope.input = {};
     // query brand information
-    function queryBrand(){
-        return HttpFact.User("GET", apiDomain + "/product/get_provAgent",{}, { "id": $stateParams.id }, {}).then(
+    function queryStore(){
+        return HttpFact.User("GET", apiDomain + "/Product/get_provAgentInfo",{}, { "id": $stateParams.id }, {}).then(
             function(data) {
                 if (data) {
-                    $scope.brand = data;
+                    $scope.store = data;
+                    $scope.input.like = data[0].Iscollection;
                 }
-                console.log(data)
             },
             function(data) {
-                $scope.brand = null;
-                var errMsg = data.err_msg || "未知错误";
-                PopupFact.alert("错误", errMsg);
+                $scope.store = null;
             }
         );
     }
+    // query hot data
+    var pros = ListFact({user: true, url: apiDomain + "/Product/getProductList", parameter: { "ProvAgentId": $stateParams.id}, method: true, type: "pro"});
+    $scope.pros = pros;
+    console.log(pros)
+    // loading more
+    $scope.loadMore = function(){
+        if (pros.loaded) {
+            pros.next();
+        }
+    };
+
+    $scope.like_action = function(id){
+        console.log(id)
+        return HttpFact.User("POST", apiDomain + "/User/Add_Collect_ProvAgent", { "pa_id": id },{}, {}).then(
+            function(data) {
+                switch (data.res_code) {
+                    case 1:
+                        $scope.input.like = !$scope.input.like;
+                        break;
+                    default: 
+                        errorServices.show("未知错误");
+                        break;
+                }
+            },
+            function(data) {
+
+            }
+        );
+    }
+
+    $scope.apply_action = function(store){
+        if (store[0].IsVip == 1) {
+            PopupFact.alert("提示","您已是本店会员");
+            return;
+        };
+
+        PopupFact.confirm("提示","您正申请该店会员").then(function(res){
+            if(res){
+                return HttpFact.User("GET", apiDomain + "/User/Applymember",{}, { "ProvAgentId": store[0].ProvAgentId }, {}).then(
+                    function(data) {
+                        switch (data.res_code) {
+                            case 0:
+                                PopupFact.alert(data.res_msg);
+                                break;
+                            case 1:
+                                PopupFact.alert("提示",data.res_msg);
+                                store[0].IsVip = 0;
+                                break;
+                            case 2:
+                                PopupFact.alert("提示","您已申请过，请耐心等待审核结果");
+                                break;
+                        }
+                    },
+                    function(data) {
+                    }
+                )
+            }
+        })
+    }
     // refresh data 
     $scope.refresh = function () {
-        $q.all([queryDetail(),queryParameter(),queryBrand()]).then(function () {
+        $q.all([queryStore(),pros.reset()]).then(function () {
           //更新Scroll
           $ionicScrollDelegate.resize();
           //告诉IONIC框架，刷新完毕
           $scope.$broadcast("scroll.refreshComplete");
         })
-    }
+    };
+    // ngrepeat finish event
+    $scope.proFinish = function(handle) {
+        $scope.$broadcast('scroll.refreshComplete');
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+        $ionicScrollDelegate.$getByHandle(handle).resize();
+    };
+
     $scope.$on("$ionicView.loaded", function(event, view) {
         $scope.refresh();
     });
