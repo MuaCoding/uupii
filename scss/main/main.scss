@@ -236,6 +236,7 @@
 .popover.service-explian{
     .popover-arrow {display: none;}
     position: relative;
+    overflow: visible;
     top: unset;
     left: unset;
     width: 100vw;
@@ -353,13 +354,20 @@
     }
 
     .fourth-cover {
-        position: relative;
-        padding: 15px;
+        position: absolute;
+        left: 0px;
+        bottom: 44px;
+        top: 55px;
         overflow: hidden;
-
+        width: 100%;
+        .scorll {
+            height: 46vh;
+            border: none;
+        }
         .prop {
             overflow: hidden;
-            margin-top: 5px;
+            margin-top: 10px;
+            padding: 0 15px;
             .prop-header {
                 font-size: 13px;
                 color: $text;
@@ -432,7 +440,7 @@
             align-items: center;
             position: relative;
             margin-top: 15px;
-            padding: 15px 0;
+            padding: 15px;
             
             .label {
                 -webkit-box-flex: 1;

@@ -68,6 +68,7 @@
     <!-- parameter modal -->
     <script id="parameter.html" type="text/ng-template">
         <ion-popover-view class="service-explian">
+
             <form name="ajaxForm" ng-submit="submitForm()">
                 <ion-header-bar class="header-bar">
                     <div class="pro-avatar"><img view-src="{{detail[0].Pic.split(',')[0]}}" src="images/default.png" err-src="images/default.png" alt="{{detail[0].title}}"/>
@@ -80,8 +81,8 @@
                     </div>
                     <div class="close" ng-click="close_param()"><i class="icon-del"></i></div>
                 </ion-header-bar>
-                <ion-content has-bouncing="false">
-                    <div class="fourth-cover">
+                <div class="fourth-cover">
+                    <ion-scroll direction="y" zooming="false" scrollbar-y="false" class="scorll">
                         <div class="prop">
                             <header class="prop-header">
                                 <span>批价</span>
@@ -105,7 +106,7 @@
                         </div>
                         <div class="prop">
                             <header class="prop-header">
-                                <span ng-bind="detail[0].paramTitle1"></span>
+                                <span ng-bind="detail[0].paramTitle1">颜色</span>
                             </header>
                             <ul class="clearfix">
                                 <li>
@@ -116,7 +117,7 @@
                         </div>
                         <div class="prop">
                             <header class="prop-header">
-                                <span ng-bind="detail[0].paramTitle2"></span>
+                                <span ng-bind="detail[0].paramTitle2">版本</span>
                             </header>
                             <ul class="clearfix">
                                 <li>
@@ -133,8 +134,9 @@
                                 <i class="btn">+</i>
                             </div>
                         </div>
-                    </div>
-                </ion-content>
+                    </ion-scroll>
+                </div>
+                
                 <ion-footer-bar class="bar-button">
                     <button type="button">加入进货单</button>
                     <button type="button">立即购买</button>
@@ -149,43 +151,43 @@
                 <h2 class="title">服务声明</h2>
             </ion-header-bar>
             <ion-content has-bouncing="false">
-            <div class="fourth-cells">
-                <div class="fourth-cell">
-                    <i class="icon icon-checked-hollow"></i>
-                    <div class="cell-content">
-                        <h3>支持包邮</h3>
-                        <p>满<em ng-bind="brand[0].Freight"></em>免运费（物流费用以实际交易情况为准）</p>
+                <div class="fourth-cells">
+                    <div class="fourth-cell">
+                        <i class="icon icon-checked-hollow"></i>
+                        <div class="cell-content">
+                            <h3>支持包邮</h3>
+                            <p>满<em ng-bind="brand[0].Freight"></em>免运费（物流费用以实际交易情况为准）</p>
+                        </div>
+                    </div>
+                    <div class="fourth-cell">
+                        <i class="icon icon-checked-hollow"></i>
+                        <div class="cell-content">
+                            <h3>极速发货</h3>
+                            <p>24小时发货</p>
+                        </div>
+                    </div>
+                    <div class="fourth-cell">
+                        <i class="icon icon-checked-hollow"></i>
+                        <div class="cell-content">
+                            <h3>交易保障</h3>
+                            <p>自实际收货日期的次日起15天内，商品完好，可进行无理由退货</p>
+                        </div>
+                    </div>
+                    <div class="fourth-cell">
+                        <i class="icon icon-checked-hollow"></i>
+                        <div class="cell-content">
+                            <h3>会员购买</h3>
+                            <p>需申请成为其该店铺的会员，商品才能购买</p>
+                        </div>
+                    </div>
+                    <div class="fourth-cell">
+                        <i class="icon icon-checked-hollow"></i>
+                        <div class="cell-content">
+                            <h3>自提</h3>
+                            <p>自提免运费，支持门店自提点、自助提货柜等自助服务</p>
+                        </div>
                     </div>
                 </div>
-                <div class="fourth-cell">
-                    <i class="icon icon-checked-hollow"></i>
-                    <div class="cell-content">
-                        <h3>极速发货</h3>
-                        <p>24小时发货</p>
-                    </div>
-                </div>
-                <div class="fourth-cell">
-                    <i class="icon icon-checked-hollow"></i>
-                    <div class="cell-content">
-                        <h3>交易保障</h3>
-                        <p>自实际收货日期的次日起15天内，商品完好，可进行无理由退货</p>
-                    </div>
-                </div>
-                <div class="fourth-cell">
-                    <i class="icon icon-checked-hollow"></i>
-                    <div class="cell-content">
-                        <h3>会员购买</h3>
-                        <p>需申请成为其该店铺的会员，商品才能购买</p>
-                    </div>
-                </div>
-                <div class="fourth-cell">
-                    <i class="icon icon-checked-hollow"></i>
-                    <div class="cell-content">
-                        <h3>自提</h3>
-                        <p>自提免运费，支持门店自提点、自助提货柜等自助服务</p>
-                    </div>
-                </div>
-            </div>
             </ion-content>
             <ion-footer-bar class="bar-button">
                 <button type="button" ng-click="close_explain()">确定</button>

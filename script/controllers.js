@@ -429,6 +429,7 @@ uupii.controller("product.storeCtrl", function($q, $scope, $state, $stateParams,
         $ionicScrollDelegate.$getByHandle(handle).resize();
     };
 
+    
     $scope.$on("$ionicView.loaded", function(event, view) {
         $scope.refresh();
     });
