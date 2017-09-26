@@ -42,11 +42,11 @@
         </section>
         <!-- 选择购买类型 -->
         <section>
-            <header class="header"><span class="label">已选：</span><em>已选</em><div class="more" ng-click=""><em>.</em><em>.</em><em>.</em></div></div></header>
+            <header class="header" ng-click="view_param()"><span class="label">已选：</span><em>请选择</em><div class="more" ng-click=""><em>.</em><em>.</em><em>.</em></div></div></header>
         </section>
         <!-- 选择地址 -->
         <section>
-            <header class="header"><span class="label">送至：</span><em>已选</em><div class="more" ng-click=""><em>.</em><em>.</em><em>.</em></div></div></header>
+            <header class="header"><span class="label">送至：</span><em>请选择</em><div class="more" ng-click=""><em>.</em><em>.</em><em>.</em></div></div></header>
             <div class="service" ng-click="view_explain()"><span ng-if="brand[0].IsFreight"><i class="icon-checked-hollow"></i>支持包邮</span><span><i class="icon-checked-hollow"></i>交易保障</span><span ng-if="brand[0].IsVipBuy"><i class="icon-checked-hollow"></i>会员购买</span><div class="more"><em>.</em><em>.</em><em>.</em></div></div>
         </section>
         <section>
@@ -65,24 +65,87 @@
         <button type="button">加入进货单</button>
         <button type="button">立即购买</button>
     </ion-footer-bar>
-    <!-- service modal -->
-    <script id="service.html" type="text/ng-template">
+    <!-- parameter modal -->
+    <script id="parameter.html" type="text/ng-template">
         <ion-popover-view class="service-explian">
-            <ion-header-bar class="header-bar">
-                <h2 class="title">服务声明</h2>
-            </ion-header-bar>
-            <ion-content has-bouncing="false">
-
-            </ion-content>
-            <ion-footer-bar class="bar-button">
-                <button type="button" ng-click="close_explain()">确定</button>
-            </ion-footer-bar>
+            <form name="ajaxForm" ng-submit="submitForm()">
+                <ion-header-bar class="header-bar">
+                    <div class="pro-avatar"><img view-src="{{detail[0].Pic.split(',')[0]}}" src="images/default.png" err-src="images/default.png" alt="{{detail[0].title}}"/>
+                    </div>
+                    <div class="pro-cell">
+                        <h2 class="price" ng-bind="detail[0].priceOriginal | currency : '￥'">
+                            ￥0
+                        </h2>
+                        <p class="stock">库存<span ng-bind="parameter[0].storage">0</span><span ng-bind="detail[0].unit"></span></p>
+                    </div>
+                    <div class="close" ng-click="close_param()"><i class="icon-del"></i></div>
+                </ion-header-bar>
+                <ion-content has-bouncing="false">
+                    <div class="fourth-cover">
+                        <div class="prop">
+                            <header class="prop-header">
+                                <span>批价</span>
+                            </header>
+                            <ul class="clearfix">
+                                <li class="active">
+                                    <p><span ng-bind="'≥'+detail[0].priceScopeTitle1">0</span><span ng-bind="detail[0].unit"></span></p>
+                                    <p ng-bind="detail[0].price1 | currency : '￥'">￥0</p>
+                                    <i class="icon-select"></i>
+                                </li>
+                                <li>
+                                    <p><span ng-bind="'≥'+detail[0].priceScopeTitle2">0</span><span ng-bind="detail[0].unit"></span></p>
+                                    <p ng-bind="detail[0].price2 | currency : '￥'">￥0</p>
+                                    <i class="icon-select"></i>
+                                </li>
+                                <li>
+                                    <p><span ng-bind="'≥'+detail[0].priceScopeTitle3">0</span><span ng-bind="detail[0].unit"></span></p>
+                                    <p ng-bind="detail[0].price3 | currency : '￥'">￥0</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="prop">
+                            <header class="prop-header">
+                                <span ng-bind="detail[0].paramTitle1"></span>
+                            </header>
+                            <ul class="clearfix">
+                                <li>
+                                    <p><span ng-bind="">默认</span></p>
+                                    <i class="icon-select"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="prop">
+                            <header class="prop-header">
+                                <span ng-bind="detail[0].paramTitle2"></span>
+                            </header>
+                            <ul class="clearfix">
+                                <li>
+                                    <p><span ng-bind="">默认</span></p>
+                                    <i class="icon-select"></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="counter">
+                            <p class="label">数量：</p>
+                            <div class="count">
+                                <i class="btn">-</i>
+                                <input type="text" value="4" class="count-input" />
+                                <i class="btn">+</i>
+                            </div>
+                        </div>
+                    </div>
+                </ion-content>
+                <ion-footer-bar class="bar-button">
+                    <button type="button">加入进货单</button>
+                    <button type="button">立即购买</button>
+                </ion-footer-bar>
+            </form>
         </ion-popover-view>
     </script>
     <!-- service modal -->
     <script id="service.html" type="text/ng-template">
         <ion-popover-view class="service-explian">
-            <ion-header-bar class="header-bar">
+            <ion-header-bar>
                 <h2 class="title">服务声明</h2>
             </ion-header-bar>
             <ion-content has-bouncing="false">

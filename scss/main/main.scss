@@ -234,8 +234,8 @@
 }
 
 .popover.service-explian{
+    .popover-arrow {display: none;}
     position: relative;
-    overflow: hidden;
     top: unset;
     left: unset;
     width: 100vw;
@@ -245,13 +245,16 @@
     opacity: 1;
     transform-origin: 0px 0px 0px;
     transform: scale(1, 1);
+    // 服务
     .bar-header {
         background-color: #fff;
         color: $text;
+        border-bottom: 1px solid $border;
         >h2{
             font-size: 15px;
         }
     }
+
     .fourth-cells {
         position: relative;
         overflow: hidden;
@@ -302,5 +305,169 @@
                 line-height: 20px;
             }
         }
+    }
+    
+    // 参数
+    .header-bar {
+        position: relative;
+        height: 55px;
+        >.pro-avatar {
+            position: absolute;
+            top: -30px;
+            left: 15px;
+            height: 75px;
+            width: 70px;
+            border-radius: 3px;
+            border: 1px solid $border;
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        .pro-cell {
+            font-size: 14px;
+            color: $text;
+            margin: 0px 15px 0px 90px; 
+            
+            .price {
+                display: block;
+                color: $text-primary;
+                font-size: 22px;
+                line-height: 24px;
+            }
+            .stock {
+                font-size: 12px;
+                line-height: 18px;
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 10px;
+            width: 25px;
+            height: 25px;
+            font-size: 18px;
+            line-height: 25px;
+            text-align: center;
+        }
+    }
+
+    .fourth-cover {
+        position: relative;
+        padding: 15px;
+        overflow: hidden;
+
+        .prop {
+            overflow: hidden;
+            margin-top: 5px;
+            .prop-header {
+                font-size: 13px;
+                color: $text;
+            }
+
+            ul {
+                display: -webkit-flex; /* Safari */
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                li{
+                    position: relative;
+                    overflow: hidden;
+                    display: block;
+                    min-width: 31%;
+                    max-width: 31%;
+                    padding: 5px;
+                    margin-top: 10px;
+                    margin-left: 10px;
+                    border: 1px solid $border;
+                    border-radius: 3px;
+                    color: $text-base;
+                    .icon-select {
+                        display: none;
+                        position: absolute;
+                        right: 0px;
+                        bottom: 0px;
+                    }
+                    &.active {
+                        color: $text-primary;
+                        border: 1px solid $theme-primary;
+                        .icon-select {display: block;}
+                    }
+                    &:nth-child(3n+1) {
+                        margin-left: 0;
+                    }
+
+                    p{
+                        line-height: 18px;
+                        font-size: 13px;
+                        text-align: center;
+                        @include lineClamp();
+                    }
+                }
+            }
+
+            & + .counter:before {
+                content: " ";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                left: 0;
+                height: 1px;
+                border-top: 1px solid #ddd;
+                color: #ddd;
+                -webkit-transform-origin: 0 0;
+                transform-origin: 0 0;
+                -webkit-transform: scaleY(.5);
+                transform: scaleY(.5);
+            }
+        }
+        .counter {
+            display: -webkit-flex; /* Safari */
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            -webkit-box-align: center;
+            align-items: center;
+            position: relative;
+            margin-top: 15px;
+            padding: 15px 0;
+            
+            .label {
+                -webkit-box-flex: 1;
+                -ms-flex: 1;
+                flex: 1;
+                font-size: 14px;
+            }
+
+            .count {
+                display: -webkit-flex; /* Safari */
+                display: flex;
+                flex-wrap: wrap;
+                -webkit-box-align: center;
+                align-items: center;
+
+                .btn {
+                    width: 30px;
+                    height: 30px;
+                    line-height: 30px;
+                    border: 1px solid $border;
+                    background-color: #fff;
+                    color: $text-base;
+                    text-align: center;
+                }
+                .count-input {
+                    -webkit-appearance: none;
+                    width: 60px;
+                    height: 30px;
+                    border-top: 1px solid $border;
+                    border-bottom: 1px solid $border;
+                    text-align: center;
+                    border-radius: 0;
+                }
+            }
+        }
+
     }
 }

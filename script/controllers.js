@@ -282,8 +282,6 @@ uupii.controller("product.detailCtrl", function($q, $scope, $state, $stateParams
             },
             function(data) {
                 $scope.parameter = null;
-                var errMsg = data.err_msg || "未知错误";
-                PopupFact.alert("错误", errMsg);
             }
         );
     }
@@ -298,8 +296,6 @@ uupii.controller("product.detailCtrl", function($q, $scope, $state, $stateParams
             },
             function(data) {
                 $scope.brand = null;
-                var errMsg = data.err_msg || "未知错误";
-                PopupFact.alert("错误", errMsg);
             }
         );
     }
@@ -309,13 +305,25 @@ uupii.controller("product.detailCtrl", function($q, $scope, $state, $stateParams
     $scope.view_explain = function(){
         PopoverFact.show($scope, "service.html").then(function(popover){
             servierPopover = popover;
-        })
-    }
-
+        });
+    };
     // close 
     $scope.close_explain = function(){
-        PopoverFact.hide(servierPopover)
-    }
+        PopoverFact.hide(servierPopover);
+    };
+
+    // view param
+    var paramPopover = null;
+    $scope.view_param = function(){
+        PopoverFact.show($scope, "parameter.html").then(function(popover){
+            paramPopover = popover;
+        });
+    };
+    // close 
+    $scope.close_param = function(){
+        PopoverFact.hide(paramPopover);
+    };
+
     // refresh data 
     $scope.refresh = function () {
         $q.all([queryDetail(),queryParameter(),queryBrand()]).then(function () {
