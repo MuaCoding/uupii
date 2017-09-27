@@ -326,11 +326,13 @@ uupii.controller("product.detailCtrl", function($q, $scope, $state, $stateParams
 
     // refresh data 
     $scope.refresh = function () {
+        $scope.loaded = false;
         $q.all([queryDetail(),queryParameter(),queryBrand()]).then(function () {
-          //更新Scroll
-          $ionicScrollDelegate.resize();
-          //告诉IONIC框架，刷新完毕
-          $scope.$broadcast("scroll.refreshComplete");
+            $scope.loaded = true;
+            //更新Scroll
+            $ionicScrollDelegate.resize();
+            //告诉IONIC框架，刷新完毕
+            $scope.$broadcast("scroll.refreshComplete");
         })
     }
     $scope.$on("$ionicView.loaded", function(event, view) {
