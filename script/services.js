@@ -67,17 +67,19 @@ uupii.factory('HttpFact', function($q, $http, $timeout, $location, $rootScope, P
         },
         //带用户信息获取数据（方法，地址，POST参数，URL参数，登录失效提示）
         User: function(method, url, data, params, failureTips) {
+
             failureTips = failureTips || true;
-            if (!whether_login()) {
-                var deferred = $q.defer();
-                $timeout(function() {
-                    deferred.reject({ err_code: 3, err_msg: "请登录后再进行操作" });
-                }, 100);
-                // if (failureTips) {
-                //     loginConfirm("请登录后再进行操作")
-                // };
-                return deferred.promise;
-            };
+            // alert(whether_login())
+            // if (!whether_login()) {
+            //     var deferred = $q.defer();
+            //     $timeout(function() {
+            //         deferred.reject({ err_code: 3, err_msg: "请登录后再进行操作" });
+            //     }, 100);
+            //     // if (failureTips) {
+            //     //     loginConfirm("请登录后再进行操作")
+            //     // };
+            //     return deferred.promise;
+            // };
 
             var httpJson = {
                 method: method,
@@ -88,9 +90,8 @@ uupii.factory('HttpFact', function($q, $http, $timeout, $location, $rootScope, P
             };
 
             return execHttp(httpJson, null, function(request) {
-                if (failureTips) {return};
-                
-                var errCode = [51001, 51002, 51003, 51004, 3];
+                // if (failureTips) {return};
+                var errCode = [10001, 10002, 10003, 10004, 51001, 51002, 51003, 52001, 52002, 52003, 52004, 3];
                 if (errCode.indexOf(request.data.err_code) >= 0) {
                     loginConfirm("登录状态失效，请重新登录");
                 }

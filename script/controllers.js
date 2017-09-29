@@ -190,7 +190,7 @@ uupii.controller("loginCtrl", function($scope, $state, $rootScope, $timeout, Htt
                     case 1:
                         localStorage.clear();
                         localStorage.setItem("user_token", data.res_token);
-                        errorServices.show("登录成功,正在为您跳转...", 1500);
+                        errorServices.show("登录成功", 1500);
                         var url = getUrlFact.get("url");
                         if (url != null) {
                             location.replace(url);

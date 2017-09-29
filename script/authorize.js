@@ -60,7 +60,8 @@ function whether_login() {
             return false;
         } else {
             return true;
-            var lmt = JSON.parse(atob(payload))["lmt"];
+            // var lmt = JSON.parse(window.atob(payload))["lmt"];
+            var lmt = JSON.parse(window.atob(payload))
             var nowLmt = new Fingerprint().get();
             if (lmt == nowLmt) {
                 return true;

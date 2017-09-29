@@ -106,7 +106,8 @@ uupii.run(function($rootScope, $state, $location, $timeout, $ionicHistory, $ioni
         // need login direct Jump login page
         if (flag && !whether_login()) {
             // event.preventDefault();  ？？？？？？
-            $rootScope.Jump_login();
+            // $rootScope.Jump_login();
+            return
         };
 
         if ($rootScope.nextDirection) {
@@ -126,6 +127,6 @@ uupii.run(function($rootScope, $state, $location, $timeout, $ionicHistory, $ioni
         localStorage.removeItem("in_exp");
         $timeout(function(){
             $location.url("login" + (url ? ("?url=" + url) : ""));
-        },1500)
+        },1000)
     }
 });
